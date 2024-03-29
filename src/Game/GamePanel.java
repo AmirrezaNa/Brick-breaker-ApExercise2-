@@ -2,6 +2,8 @@ package Game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -20,6 +22,9 @@ public class GamePanel extends JPanel implements Runnable {
     static Ball otherBalls;
     static int gameRound = 1;
     static int number;
+    int seconds;
+    int minutes;
+    Timer timer;
 
 
 
@@ -30,13 +35,16 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void init() {
         GameFrame.gameIsRunning = true;
+        gameTimer();
+        timer.start();
         this.setBackground(new Color(0x0D283B));
         newBall(165, 430);
         newBrick();
         mouseInputListener = new MouseInputListener();
         this.addMouseListener(new MouseInputListener());
         this.addMouseMotionListener(new MouseInputListener());
-
+        seconds = 0;
+        minutes = 0;
     }
 
 
@@ -109,6 +117,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawScore(g);
+        drawTimer(g);
         ball.draw(g, ball.x, ball.y, ball.ballSize);
         newBrick1.draw(g, newBrick1.x);
         newBrick2.draw(g, newBrick2.x);
@@ -125,8 +134,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void drawScore(Graphics g) {
         g.setColor(new Color(0x1C8F09));
-        g.setFont(new Font("Arial", Font.BOLD, 18));
+        g.setFont(new Font("Arial", Font.PLAIN  , 18));
         g.drawString("SCORE : " + String.valueOf(Brick.score), 10, 20);
+    }
+
+    public void drawTimer(Graphics g) {
+        g.setColor(new Color(0x1C8F09));
+        g.setFont(new Font("Arial", Font.PLAIN  , 18));
+        g.drawString(String.valueOf(minutes) + " : " + seconds, 275, 20);
     }
 
     public void paint(Graphics g) {
@@ -180,6 +195,20 @@ public class GamePanel extends JPanel implements Runnable {
                 ball.x = allBallsX;
             }
         }
+    }
+
+
+    public void gameTimer() {
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                seconds++;
+                if (seconds == 60) {
+                    minutes++;
+                    seconds = 0;
+                }
+            }
+        });
     }
 
 }
