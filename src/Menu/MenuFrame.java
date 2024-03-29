@@ -1,7 +1,6 @@
 package Menu;
 
-import Game.GameHistory;
-import Game.GameRecords;
+import Game.GameFrame;
 import Settings.Settings;
 import Start.StartPage;
 
@@ -9,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
 
 public class MenuFrame extends JFrame implements ActionListener{
 
@@ -94,18 +92,19 @@ public class MenuFrame extends JFrame implements ActionListener{
 
         if (e.getSource() == buttonStart) {
             this.dispose();
-            StartPage startPage = new StartPage();
+            //StartPage startPage = new StartPage();
+            GameFrame gameFrame = new GameFrame();
 
         } else if (e.getSource() == buttonExit) {
             System.exit(0);
 
         } else if (e.getSource() == buttonHistory) {
             this.dispose();
-            GameHistory gameHistory = new GameHistory();
+            //GameHistory gameHistory = new GameHistory();
 
         } else if (e.getSource() == buttonRecords) {
             this.dispose();
-            GameRecords gameRecords = new GameRecords();
+            //GameRecords gameRecords = new GameRecords();
 
         } else if (e.getSource() == buttonSettings) {
             this.dispose();
