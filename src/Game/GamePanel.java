@@ -58,6 +58,8 @@ public class GamePanel extends JPanel implements Runnable {
         newBrick2 = new Brick(xSecondBrick * Brick.width, 85, gameRound );
         newBrick1.brickValue += number;
         newBrick2.brickValue += number;
+        newBrick1.brickMainValue = newBrick1.brickValue;
+        newBrick2.brickMainValue = newBrick2.brickValue;
         bricks.add(0, newBrick1);
         bricks.add(0, newBrick2);
     }
@@ -123,8 +125,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void drawScore(Graphics g) {
         g.setColor(new Color(0x1C8F09));
-        g.setFont(new Font("Arial", Font.BOLD, 24));
-        g.drawString(String.valueOf(Brick.score), 20, 20);
+        g.setFont(new Font("Arial", Font.BOLD, 18));
+        g.drawString("SCORE : " + String.valueOf(Brick.score), 10, 20);
     }
 
     public void paint(Graphics g) {
