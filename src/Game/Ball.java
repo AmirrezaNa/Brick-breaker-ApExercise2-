@@ -4,6 +4,8 @@ import Start.StartPage;
 import Start.StartPagePanel;
 
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Ball {
 
@@ -25,9 +27,15 @@ public class Ball {
 
     public void update() {
         for (Ball ball : GamePanel.balls) {
+            if (SpeedItems.speedUp) {
+                ball.x += 2 * ball.dx;
+                ball.y += 2 * ball.dy;
+            }
+            else {
+                ball.x += ball.dx;
+                ball.y += ball.dy;
+            }
 
-            ball.x += ball.dx;
-            ball.y += ball.dy;
             Rectangle ballRect = new Rectangle((int) ball.x, (int) ball.y, ballSize, ballSize);
             Rectangle downSideRect = new Rectangle(0, 450, 400, 5);
             if (ball.x < ballSize / 2 || ball.x > GameFrame.width - 35) {
@@ -81,6 +89,7 @@ public class Ball {
                 GamePanel.number++;
                 GamePanel.newBrick();
                 GamePanel.newBallItems();
+                GamePanel.newSpeedItems();
                 ballInAir = false;
                 for (Brick brick : GamePanel.bricks) {
                     if (GamePanel.bricks.indexOf(brick) == 0 || GamePanel.bricks.indexOf(brick) == 1) {
@@ -106,7 +115,6 @@ public class Ball {
         else {
             ballInAir = true;
         }
-
     }
 
     public void draw(Graphics g, double x, double y, double ballSize) {

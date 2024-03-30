@@ -19,6 +19,7 @@ public class MouseInputListener implements MouseListener, MouseMotionListener {
 
 
     }
+
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -76,21 +77,23 @@ public class MouseInputListener implements MouseListener, MouseMotionListener {
             double x2 = endPoint.x;
             double y2 = endPoint.y;
             final int[] numberOfBalls = {GamePanel.balls.size()};
+
+
             Timer timer = new Timer();
             TimerTask task = new TimerTask() {
                 @Override
                 public void run() {
                     if (numberOfBalls[0] > 0) {
                         Ball ball = GamePanel.balls.get(numberOfBalls[0] - 1);
-                        if (x2 > x1  && y2 > y1) {
+                        if (x2 > x1 && y2 > y1) {
 
-                            ball.dx = -(((x2 - x1) / ((x2 - x1) + (y2 - y1))) * 40);
-                            ball.dy = -(40 - (((x2 - x1) / ((x2 - x1) + (y2 - y1))) * 40));
+                            ball.dx = -(((x2 - x1) / ((x2 - x1) + (y2 - y1))) * 30);
+                            ball.dy = -(30 - (((x2 - x1) / ((x2 - x1) + (y2 - y1))) * 30));
                         }
                         if (x2 <= x1 && y2 > y1) {
 
-                            ball.dx = (((x1 - x2) / ((x1 - x2) + (y2 - y1))) * 40);
-                            ball.dy = -(40 - (((x1 - x2) / ((x1 - x2) + (y2 - y1))) * 40));
+                            ball.dx = (((x1 - x2) / ((x1 - x2) + (y2 - y1))) * 30);
+                            ball.dy = -(30 - (((x1 - x2) / ((x1 - x2) + (y2 - y1))) * 30));
                         }
                         numberOfBalls[0]--;
                     }

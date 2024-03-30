@@ -21,6 +21,7 @@ public class GamePanel extends JPanel implements Runnable {
     static int xFirstBrick;
     static int xSecondBrick;
     static int xBallItem;
+    static int xOtherItems;
 
     static ArrayList<Brick> bricks = new ArrayList<>();
     static ArrayList<Ball> balls = new ArrayList<>();
@@ -48,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
         newBall(165, 430);
         newBrick();
         newBallItems();
+        newSpeedItems();
         mouseInputListener = new MouseInputListener();
         this.addMouseListener(new MouseInputListener());
         this.addMouseMotionListener(new MouseInputListener());
@@ -67,6 +69,7 @@ public class GamePanel extends JPanel implements Runnable {
         newBrick1 = new Brick(xFirstBrick * Brick.width, 85, gameRound );
         xSecondBrick = (int) (7*Math.random());
         xBallItem = (int) (7*Math.random());
+        xOtherItems = (int) (7*Math.random());
         if (xSecondBrick == xFirstBrick) {
             while (xSecondBrick == xFirstBrick) {
                 xSecondBrick = (int) (7*Math.random());
@@ -75,6 +78,11 @@ public class GamePanel extends JPanel implements Runnable {
         if (xBallItem == xFirstBrick || xBallItem == xSecondBrick) {
             while (xBallItem == xFirstBrick || xBallItem == xSecondBrick) {
                 xBallItem = (int) (7*Math.random());
+            }
+        }
+        if (xOtherItems == xFirstBrick || xOtherItems == xSecondBrick || xOtherItems == xBallItem) {
+            while (xOtherItems == xFirstBrick || xOtherItems == xSecondBrick || xOtherItems == xBallItem) {
+                xOtherItems = (int) (7*Math.random());
             }
         }
         newBrick2 = new Brick(xSecondBrick * Brick.width, 85, gameRound );
@@ -92,7 +100,14 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public static void newSpeedItems() {
-        speedItem = new SpeedItems()
+        if ((gameRound + number)%20 == 5) {
+            speedItem = new SpeedItems(xOtherItems * Brick.width, 85, 1);
+            speedItems.add(speedItem);
+        }
+        else {
+            speedItem = new SpeedItems(xOtherItems * Brick.width, 85, 0);
+            speedItems.add(speedItem);
+        }
     }
 
 
@@ -125,6 +140,8 @@ public class GamePanel extends JPanel implements Runnable {
         newBrick1.update();
         newBrick2.update();
         ballItem.update();
+        speedItem.update();
+
     }
 
     public void draw() {
@@ -148,6 +165,7 @@ public class GamePanel extends JPanel implements Runnable {
         newBrick1.draw(g, newBrick1.x);
         newBrick2.draw(g, newBrick2.x);
         ballItem.draw(g, ballItem.x);
+        speedItem.draw(g, speedItem.x);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.black);
         g2d.fillRect(0, 80, 350, 5);
