@@ -16,10 +16,17 @@ public class GamePanel extends JPanel implements Runnable {
 
     static Brick newBrick1;
     static Brick newBrick2;
+    static BallItems ballItem;
+    static SpeedItems speedItem;
+    static int xFirstBrick;
+    static int xSecondBrick;
+    static int xBallItem;
 
     static ArrayList<Brick> bricks = new ArrayList<>();
     static ArrayList<Ball> balls = new ArrayList<>();
-    static Ball otherBalls;
+    static ArrayList<BallItems> ballItems = new ArrayList<>();
+    static ArrayList<SpeedItems> speedItems = new ArrayList<>();
+
     static int gameRound = 1;
     static int number;
     int seconds;
@@ -40,6 +47,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(new Color(0x0D283B));
         newBall(165, 430);
         newBrick();
+        newBallItems();
         mouseInputListener = new MouseInputListener();
         this.addMouseListener(new MouseInputListener());
         this.addMouseMotionListener(new MouseInputListener());
@@ -55,12 +63,18 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public static void newBrick() {
-        int xFirstBrick = (int) (7*Math.random());
+        xFirstBrick = (int) (7*Math.random());
         newBrick1 = new Brick(xFirstBrick * Brick.width, 85, gameRound );
-        int xSecondBrick = (int) (7*Math.random());
+        xSecondBrick = (int) (7*Math.random());
+        xBallItem = (int) (7*Math.random());
         if (xSecondBrick == xFirstBrick) {
             while (xSecondBrick == xFirstBrick) {
                 xSecondBrick = (int) (7*Math.random());
+            }
+        }
+        if (xBallItem == xFirstBrick || xBallItem == xSecondBrick) {
+            while (xBallItem == xFirstBrick || xBallItem == xSecondBrick) {
+                xBallItem = (int) (7*Math.random());
             }
         }
         newBrick2 = new Brick(xSecondBrick * Brick.width, 85, gameRound );
@@ -70,6 +84,15 @@ public class GamePanel extends JPanel implements Runnable {
         newBrick2.brickMainValue = newBrick2.brickValue;
         bricks.add(0, newBrick1);
         bricks.add(0, newBrick2);
+    }
+
+    public static void newBallItems() {
+        ballItem = new BallItems(xBallItem * Brick.width + 10, 90);
+        ballItems.add(0, ballItem);
+    }
+
+    public static void newSpeedItems() {
+        speedItem = new SpeedItems()
     }
 
 
@@ -101,6 +124,7 @@ public class GamePanel extends JPanel implements Runnable {
         ball.update();
         newBrick1.update();
         newBrick2.update();
+        ballItem.update();
     }
 
     public void draw() {
@@ -108,25 +132,28 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
-    public void drawYouLust(Graphics g) {
+    public void drawYouLost(Graphics g) {
         g.setColor(new Color(0x1C8F09));
         g.setFont(new Font("Arial", Font.BOLD, 24));
-        g.drawString("YOU LUST!", 100, 275);
+        g.drawString("YOU LOST!", 100, 275);
     }
+
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawScore(g);
         drawTimer(g);
+        drawBallNumber(g);
         ball.draw(g, ball.x, ball.y, ball.ballSize);
         newBrick1.draw(g, newBrick1.x);
         newBrick2.draw(g, newBrick2.x);
+        ballItem.draw(g, ballItem.x);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.black);
         g2d.fillRect(0, 80, 350, 5);
         g2d.fillRect(0, 450, 350, 5);
         if (Brick.checkForEndGame()) {
-            drawYouLust(g);
+            drawYouLost(g);
             GameFrame.gameIsRunning = false;
         }
         g.dispose();
@@ -142,6 +169,12 @@ public class GamePanel extends JPanel implements Runnable {
         g.setColor(new Color(0x1C8F09));
         g.setFont(new Font("Arial", Font.PLAIN  , 18));
         g.drawString(String.valueOf(minutes) + " : " + seconds, 275, 20);
+    }
+
+    public void drawBallNumber(Graphics g) {
+        g.setColor(new Color(0x1C8F09));
+        g.setFont(new Font("Arial", Font.PLAIN  , 18));
+        g.drawString("Balls : " + balls.size(), 10, 40);
     }
 
     public void paint(Graphics g) {

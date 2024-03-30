@@ -2,6 +2,8 @@ package Game;
 
 import java.awt.*;
 
+import static Game.Ball.ballSize;
+
 public class Brick {
 
     int x, y , dy;
@@ -57,6 +59,7 @@ public class Brick {
         }
 
     }
+
 
     public static boolean checkForEndGame() {
         // checking if any brick has reached to the downSide

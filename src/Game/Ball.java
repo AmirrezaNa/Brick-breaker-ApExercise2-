@@ -80,6 +80,7 @@ public class Ball {
             if (ballInAir) {
                 GamePanel.number++;
                 GamePanel.newBrick();
+                GamePanel.newBallItems();
                 ballInAir = false;
                 for (Brick brick : GamePanel.bricks) {
                     if (GamePanel.bricks.indexOf(brick) == 0 || GamePanel.bricks.indexOf(brick) == 1) {
@@ -88,7 +89,18 @@ public class Ball {
                         brick.y += Brick.height;
                     }
                 }
+                for (BallItems ballItem : GamePanel.ballItems) {
+                    if (GamePanel.ballItems.indexOf(ballItem) == 0) {
+                        continue;
+                    } else {
+                        ballItem.y += Brick.height;
+                    }
+                }
                 GamePanel.newBall((int) GamePanel.ball.x, (int) GamePanel.ball.y);
+                for (int k = 0; k < BallItems.collectedBallItems; k++) {
+                    GamePanel.newBall((int) GamePanel.ball.x, (int) GamePanel.ball.y);
+                }
+                BallItems.collectedBallItems = 0;
             }
         }
         else {
