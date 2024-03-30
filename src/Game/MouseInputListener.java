@@ -85,16 +85,23 @@ public class MouseInputListener implements MouseListener, MouseMotionListener {
                 public void run() {
                     if (numberOfBalls[0] > 0) {
                         Ball ball = GamePanel.balls.get(numberOfBalls[0] - 1);
-                        if (x2 > x1 && y2 > y1) {
-
-                            ball.dx = -(((x2 - x1) / ((x2 - x1) + (y2 - y1))) * 30);
-                            ball.dy = -(30 - (((x2 - x1) / ((x2 - x1) + (y2 - y1))) * 30));
+                        if (DizzinessItem.dizziness) {
+                            ball.dx = (60 * Math.random())-30;
+                            ball.dy = -(30 - Math.abs(ball.dx));
                         }
-                        if (x2 <= x1 && y2 > y1) {
+                        else {
+                            if (x2 > x1 && y2 > y1) {
 
-                            ball.dx = (((x1 - x2) / ((x1 - x2) + (y2 - y1))) * 30);
-                            ball.dy = -(30 - (((x1 - x2) / ((x1 - x2) + (y2 - y1))) * 30));
+                                ball.dx = -(((x2 - x1) / ((x2 - x1) + (y2 - y1))) * 30);
+                                ball.dy = -(30 - (((x2 - x1) / ((x2 - x1) + (y2 - y1))) * 30));
+                            }
+                            if (x2 <= x1 && y2 > y1) {
+
+                                ball.dx = (((x1 - x2) / ((x1 - x2) + (y2 - y1))) * 30);
+                                ball.dy = -(30 - (((x1 - x2) / ((x1 - x2) + (y2 - y1))) * 30));
+                            }
                         }
+
                         numberOfBalls[0]--;
                     }
                 }

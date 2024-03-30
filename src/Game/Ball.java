@@ -118,6 +118,8 @@ public class Ball {
                 GamePanel.newBrick();
                 GamePanel.newBallItems();
                 GamePanel.newSpeedItems();
+                GamePanel.newPowerUpItems();
+                GamePanel.newDizzinessItems();
                 ballInAir = false;
                 for (Brick brick : GamePanel.bricks) {
                     if (GamePanel.bricks.indexOf(brick) == 0 || GamePanel.bricks.indexOf(brick) == 1) {

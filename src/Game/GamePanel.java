@@ -19,6 +19,7 @@ public class GamePanel extends JPanel implements Runnable {
     static BallItems ballItem;
     static SpeedItems speedItem;
     static PowerUpItem powerUpItem;
+    static DizzinessItem dizzinessItem;
     static int xFirstBrick;
     static int xSecondBrick;
     static int xBallItem;
@@ -29,6 +30,7 @@ public class GamePanel extends JPanel implements Runnable {
     static ArrayList<BallItems> ballItems = new ArrayList<>();
     static ArrayList<SpeedItems> speedItems = new ArrayList<>();
     static ArrayList<PowerUpItem> powerUpItems = new ArrayList<>();
+    static ArrayList<DizzinessItem> dizzinessItems = new ArrayList<>();
 
     static int gameRound = 1;
     static int number;
@@ -53,6 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
         newBallItems();
         newSpeedItems();
         newPowerUpItems();
+        newDizzinessItems();
         mouseInputListener = new MouseInputListener();
         this.addMouseListener(new MouseInputListener());
         this.addMouseMotionListener(new MouseInputListener());
@@ -103,7 +106,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public static void newSpeedItems() {
-        if ((gameRound + number)%20 == 5) {
+        if ((gameRound + number)%20 == 9) {
             speedItem = new SpeedItems(xOtherItems * Brick.width, 85, 1);
             speedItems.add(speedItem);
         }
@@ -114,13 +117,24 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public static void newPowerUpItems() {
-        if ((gameRound + number)%20 == 8) {
+        if ((gameRound + number)%20 == 5) {
             powerUpItem = new PowerUpItem(xOtherItems * Brick.width, 85, 1);
             powerUpItems.add(powerUpItem);
         }
         else {
             powerUpItem = new PowerUpItem(xOtherItems * Brick.width, 85, 0);
             powerUpItems.add(powerUpItem);
+        }
+    }
+
+    public static void newDizzinessItems() {
+        if ((gameRound + number)%20 == 15) {
+            dizzinessItem = new DizzinessItem(xOtherItems * Brick.width, 85, 1);
+            dizzinessItems.add(dizzinessItem);
+        }
+        else {
+            dizzinessItem = new DizzinessItem(xOtherItems * Brick.width, 85, 0);
+            dizzinessItems.add(dizzinessItem);
         }
     }
 
@@ -157,6 +171,7 @@ public class GamePanel extends JPanel implements Runnable {
         ballItem.update();
         speedItem.update();
         powerUpItem.update();
+        dizzinessItem.update();
 
     }
 
@@ -183,6 +198,7 @@ public class GamePanel extends JPanel implements Runnable {
         ballItem.draw(g, ballItem.x);
         speedItem.draw(g, speedItem.x);
         powerUpItem.draw(g, powerUpItem.x);
+        dizzinessItem.draw(g, dizzinessItem.x);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.black);
         g2d.fillRect(0, 80, 350, 5);
