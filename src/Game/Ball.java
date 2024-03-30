@@ -64,8 +64,12 @@ public class Ball {
                         } else {
                             ball.dx = -ball.dx;
                         }
-
-                        brick.brickValue--;
+                        if (PowerUpItem.powerUp) {
+                            brick.brickValue -= 2;
+                        }
+                        else {
+                            brick.brickValue--;
+                        }
                         if (brick.brickValue == 0) {
                             Brick.score = Brick.score + (brick.brickMainValue - (GamePanel.minutes*5));
                         }
@@ -75,6 +79,30 @@ public class Ball {
 
             }
         }
+
+
+    }
+
+    public void draw(Graphics g, double x, double y, double ballSize) {
+        if (colorChosen) {
+            g.setColor(StartPagePanel.ballColor);
+            g.fillOval((int) x, (int) y, (int) ballSize, (int) ballSize);
+            for (Ball ball : GamePanel.balls) {
+                g.fillOval((int) ball.x, (int) ball.y, (int) ballSize, (int) ballSize);
+            }
+        }
+        else {
+            g.setColor(new Color(0x0C4203));
+            g.fillOval((int) x, (int) y, (int) ballSize, (int) ballSize);
+            for (Ball ball : GamePanel.balls) {
+                g.fillOval((int) ball.x, (int) ball.y, (int) ballSize, (int) ballSize);
+            }
+        }
+
+
+    }
+
+    public void startingNewLoop() {
         boolean allBallsDown = true;
         for (Ball ball : GamePanel.balls){
             Rectangle ballRect = new Rectangle((int) ball.x, (int) ball.y, ballSize, ballSize);
@@ -115,25 +143,6 @@ public class Ball {
         else {
             ballInAir = true;
         }
-    }
-
-    public void draw(Graphics g, double x, double y, double ballSize) {
-        if (colorChosen) {
-            g.setColor(StartPagePanel.ballColor);
-            g.fillOval((int) x, (int) y, (int) ballSize, (int) ballSize);
-            for (Ball ball : GamePanel.balls) {
-                g.fillOval((int) ball.x, (int) ball.y, (int) ballSize, (int) ballSize);
-            }
-        }
-        else {
-            g.setColor(new Color(0x0C4203));
-            g.fillOval((int) x, (int) y, (int) ballSize, (int) ballSize);
-            for (Ball ball : GamePanel.balls) {
-                g.fillOval((int) ball.x, (int) ball.y, (int) ballSize, (int) ballSize);
-            }
-        }
-
-
     }
 
 

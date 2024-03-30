@@ -52,8 +52,8 @@ public class SpeedItems {
             Rectangle ballRect = new Rectangle((int) ball.x, (int) ball.y, ballSize, ballSize);
             for (SpeedItems speedItem : GamePanel.speedItems) {
                 if (speedItem.value > 0) {
-                    Rectangle ballItemRect = new Rectangle(speedItem.x, speedItem.y, ballSize, ballSize);
-                    if (ballRect.intersects(ballItemRect)) {
+                    Rectangle speedRect = new Rectangle(speedItem.x, speedItem.y, ballSize, ballSize);
+                    if (ballRect.intersects(speedRect)) {
                         speedUp = true;
                         countDownSpeedItem();
                         speedItem.value--;
