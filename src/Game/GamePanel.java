@@ -23,7 +23,7 @@ public class GamePanel extends JPanel implements Runnable {
     static int gameRound = 1;
     static int number;
     int seconds;
-    int minutes;
+    static int minutes;
     Timer timer;
 
 

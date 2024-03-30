@@ -1,5 +1,8 @@
 package Game;
 
+import Start.StartPage;
+import Start.StartPagePanel;
+
 import java.awt.*;
 
 public class Ball {
@@ -9,6 +12,7 @@ public class Ball {
 
     static boolean ballOnDownSide = false;
     static boolean ballInAir = false;
+    public static boolean colorChosen;
 
 
     Ball(int x, int y) {
@@ -55,7 +59,7 @@ public class Ball {
 
                         brick.brickValue--;
                         if (brick.brickValue == 0) {
-                            Brick.score += brick.brickMainValue;
+                            Brick.score = Brick.score + (brick.brickMainValue - (GamePanel.minutes*5));
                         }
                     }
 
@@ -94,11 +98,21 @@ public class Ball {
     }
 
     public void draw(Graphics g, double x, double y, double ballSize) {
-        g.setColor(new Color(0x0C4203));
-        g.fillOval((int) x, (int) y, (int) ballSize, (int) ballSize);
-        for (Ball ball : GamePanel.balls) {
-            g.fillOval((int) ball.x, (int) ball.y, (int) ballSize, (int) ballSize);
+        if (colorChosen) {
+            g.setColor(StartPagePanel.ballColor);
+            g.fillOval((int) x, (int) y, (int) ballSize, (int) ballSize);
+            for (Ball ball : GamePanel.balls) {
+                g.fillOval((int) ball.x, (int) ball.y, (int) ballSize, (int) ballSize);
+            }
         }
+        else {
+            g.setColor(new Color(0x0C4203));
+            g.fillOval((int) x, (int) y, (int) ballSize, (int) ballSize);
+            for (Ball ball : GamePanel.balls) {
+                g.fillOval((int) ball.x, (int) ball.y, (int) ballSize, (int) ballSize);
+            }
+        }
+
 
     }
 

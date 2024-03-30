@@ -27,38 +27,53 @@ public class MenuFrame extends JFrame implements ActionListener{
 
         buttonStart = new JButton();
         buttonStart.setFocusable(false);
+        buttonStart.setBackground(new Color(0x770404));
         buttonStart.setText("Start");
+        buttonStart.setForeground(new Color(0x1C8F09));
         buttonStart.setBounds(50, 10, 100, 50);
         buttonStart.addActionListener(this);
+        buttonStart.setBorder(BorderFactory.createEtchedBorder());
 
 
 
         buttonRecords = new JButton();
         buttonRecords.setFocusable(false);
+        buttonRecords.setBackground(new Color(0x770404));
         buttonRecords.setText("Records");
+        buttonRecords.setForeground(new Color(0x1C8F09));
         buttonRecords.setBounds(50, 80, 100, 50);
         buttonRecords.addActionListener(this);
+        buttonRecords.setBorder(BorderFactory.createEtchedBorder());
 
 
         buttonHistory = new JButton();
         buttonHistory.setFocusable(false);
+        buttonHistory.setBackground(new Color(0x770404));
         buttonHistory.setText("Game History");
+        buttonHistory.setForeground(new Color(0x1C8F09));
         buttonHistory.setBounds(50, 150, 100, 50);
         buttonHistory.addActionListener(this);
+        buttonHistory.setBorder(BorderFactory.createEtchedBorder());
 
 
         buttonSettings = new JButton();
         buttonSettings.setFocusable(false);
+        buttonSettings.setBackground(new Color(0x770404));
         buttonSettings.setText("Settings");
+        buttonSettings.setForeground(new Color(0x1C8F09));
         buttonSettings.setBounds(50, 220, 100, 50);
         buttonSettings.addActionListener(this);
+        buttonSettings.setBorder(BorderFactory.createEtchedBorder());
 
 
         buttonExit = new JButton();
         buttonExit.setFocusable(false);
+        buttonExit.setBackground(new Color(0x770404));
         buttonExit.setText("Exit");
+        buttonExit.setForeground(new Color(0x1C8F09));
         buttonExit.setBounds(50, 290, 100, 50);
         buttonExit.addActionListener(this);
+        buttonExit.setBorder(BorderFactory.createEtchedBorder());
 
 
         //----------------------------
@@ -92,8 +107,7 @@ public class MenuFrame extends JFrame implements ActionListener{
 
         if (e.getSource() == buttonStart) {
             this.dispose();
-            //StartPage startPage = new StartPage();
-            GameFrame gameFrame = new GameFrame();
+            StartPage startPage = new StartPage();
 
         } else if (e.getSource() == buttonExit) {
             System.exit(0);

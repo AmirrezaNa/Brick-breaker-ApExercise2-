@@ -27,12 +27,7 @@ public class GameFrame extends JFrame{
         // adding the stuff to the frame -----------------------------
 
 
-        JLabel valueLabel = new JLabel("hi this is amirreza");
-        valueLabel.setLocation(50, 50);
-
-
         gamePanel = new GamePanel();
-        gamePanel.add(valueLabel);
         this.add(gamePanel);
         Thread thread = new Thread(gamePanel);
         thread.start();
