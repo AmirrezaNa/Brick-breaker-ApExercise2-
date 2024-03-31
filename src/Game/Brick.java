@@ -37,7 +37,11 @@ public class Brick {
 
     public void update() {
         for (Brick brick : GamePanel.bricks) {
-            brick.y += dy;
+            if (StartPagePanel.gameLevel == 2) {
+                brick.y += 2*dy;
+            } else if (StartPagePanel.gameLevel == 0 || StartPagePanel.gameLevel == 1) {
+                brick.y += dy;
+            }
             if (Ball.ballOnDownSide) {
                 dy = 0;
             }

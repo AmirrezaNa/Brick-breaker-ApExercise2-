@@ -1,6 +1,7 @@
 package Game;
 
 import Settings.SettingsPanel;
+import Start.StartPagePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -94,8 +95,16 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
         newBrick2 = new Brick(xSecondBrick * Brick.width, 85, gameRound );
-        newBrick1.brickValue += number;
-        newBrick2.brickValue += number;
+        if (StartPagePanel.gameLevel == 0) {
+            newBrick2.brickValue += number;
+            newBrick1.brickValue += number;
+        } else if (StartPagePanel.gameLevel == 1) {
+            newBrick2.brickValue = 0;
+            newBrick1.brickValue += number;
+        } else if (StartPagePanel.gameLevel == 2) {
+            newBrick2.brickValue += 2*number;
+            newBrick1.brickValue += 2*number;
+        }
         newBrick1.brickMainValue = newBrick1.brickValue;
         newBrick2.brickMainValue = newBrick2.brickValue;
         bricks.add(0, newBrick1);
@@ -103,8 +112,21 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public static void newBallItems() {
-        ballItem = new BallItems(xBallItem * Brick.width + 10, 90);
-        ballItems.add(0, ballItem);
+        if (StartPagePanel.gameLevel == 0 || StartPagePanel.gameLevel == 1) {
+            ballItem = new BallItems(xBallItem * Brick.width + 10, 90);
+            ballItems.add(0, ballItem);
+        } else if (StartPagePanel.gameLevel == 2) {
+            if ((gameRound + number) % 2 == 1) {
+                ballItem = new BallItems(xBallItem * Brick.width + 10, 90);
+                ballItems.add(0, ballItem);
+            }
+            else {
+                ballItem = new BallItems(xBallItem * Brick.width + 10, 90);
+                ballItem.value = 0;
+                ballItems.add(0, ballItem);
+            }
+        }
+
     }
 
     public static void newSpeedItems() {
@@ -119,14 +141,27 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public static void newPowerUpItems() {
-        if ((gameRound + number)%20 == 5) {
-            powerUpItem = new PowerUpItem(xOtherItems * Brick.width, 85, 1);
-            powerUpItems.add(powerUpItem);
+        if (StartPagePanel.gameLevel == 0) {
+            if ((gameRound + number)%10 == 5) {
+                powerUpItem = new PowerUpItem(xOtherItems * Brick.width, 85, 1);
+                powerUpItems.add(powerUpItem);
+            }
+            else {
+                powerUpItem = new PowerUpItem(xOtherItems * Brick.width, 85, 0);
+                powerUpItems.add(powerUpItem);
+            }
         }
         else {
-            powerUpItem = new PowerUpItem(xOtherItems * Brick.width, 85, 0);
-            powerUpItems.add(powerUpItem);
+            if ((gameRound + number)%20 == 5) {
+                powerUpItem = new PowerUpItem(xOtherItems * Brick.width, 85, 1);
+                powerUpItems.add(powerUpItem);
+            }
+            else {
+                powerUpItem = new PowerUpItem(xOtherItems * Brick.width, 85, 0);
+                powerUpItems.add(powerUpItem);
+            }
         }
+
     }
 
     public static void newDizzinessItems() {

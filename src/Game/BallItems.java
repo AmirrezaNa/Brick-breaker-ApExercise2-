@@ -1,5 +1,7 @@
 package Game;
 
+import Start.StartPagePanel;
+
 import java.awt.*;
 
 import static Game.Ball.ballSize;
@@ -18,7 +20,12 @@ public class BallItems {
 
     public void update() {
         for (BallItems ballItem : GamePanel.ballItems) {
-            ballItem.y += 2 * dy;
+            if (StartPagePanel.gameLevel == 2) {
+                ballItem.y += 4 * dy;
+            }
+            else {
+                ballItem.y += 2 * dy;
+            }
             if (Ball.ballOnDownSide) {
                 dy = 0;
             }

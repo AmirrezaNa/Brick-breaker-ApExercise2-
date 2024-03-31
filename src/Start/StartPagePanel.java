@@ -17,7 +17,7 @@ public class StartPagePanel extends JPanel implements ActionListener {
     public static Color ballColor;
     JTextField name;
     public static String playerName;
-    static int gameLevel;
+    public static int gameLevel;
     JButton buttonStart;
     JButton buttonBack;
     StartPagePanel() {
@@ -31,7 +31,7 @@ public class StartPagePanel extends JPanel implements ActionListener {
         gameLevelLabel.setOpaque(true);
         gameLevelLabel.setBounds(60, 80, 150, 50);
         gameLevelLabel.setForeground(new Color(0x1C8F09));
-        String[] gameLevels = {"Easy", "Medium", "Hard"};
+        String[] gameLevels = {"Medium", "Easy", "Hard"};
         gameLevelBox = new JComboBox(gameLevels);
         gameLevelBox.addActionListener(this);
         gameLevelBox.setBounds(180, 95, 70, 20);
