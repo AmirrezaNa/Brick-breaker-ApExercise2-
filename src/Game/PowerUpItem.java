@@ -1,5 +1,7 @@
 package Game;
 
+import Start.StartPagePanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Timer;
@@ -23,7 +25,12 @@ public class PowerUpItem {
 
     public void update() {
         for (PowerUpItem powerUpItem : GamePanel.powerUpItems) {
-            powerUpItem.y += 2 * dy;
+            if (StartPagePanel.gameLevel == 2) {
+                powerUpItem.y += 4 * dy;
+            }
+            else {
+                powerUpItem.y += 2 * dy;
+            }
             if (Ball.ballOnDownSide) {
                 dy = 0;
             }
@@ -39,7 +46,7 @@ public class PowerUpItem {
         if (!GamePanel.powerUpItems.isEmpty()) {
             for (PowerUpItem powerUpItem : GamePanel.powerUpItems) {
                 if (powerUpItem.value > 0) {
-                    g.drawImage(image, powerUpItem.x, powerUpItem.y, 40, 20, null);
+                    g.drawImage(image, powerUpItem.x, powerUpItem.y, Brick.width, Brick.height, null);
                 }
             }
         }

@@ -1,5 +1,7 @@
 package Game;
 
+import Start.StartPagePanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Timer;
@@ -23,7 +25,12 @@ public class SpeedItems {
 
     public void update() {
         for (SpeedItems speedItem : GamePanel.speedItems) {
-            speedItem.y += 2 * dy;
+            if (StartPagePanel.gameLevel == 2) {
+                speedItem.y += 4 * dy;
+            }
+            else {
+                speedItem.y += 2 * dy;
+            }
             if (Ball.ballOnDownSide) {
                 dy = 0;
             }

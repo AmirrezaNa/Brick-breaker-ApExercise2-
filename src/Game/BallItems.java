@@ -41,12 +41,15 @@ public class BallItems {
 
 
     public void draw(Graphics g, int x) {
-        for (BallItems ballItem : GamePanel.ballItems) {
-            if (ballItem.value > 0) {
-                g.setColor(new Color(0x0C4203));
-                g.fillOval((int) ballItem.x, (int) ballItem.y, (int) ballSize, (int) ballSize);
+        if (DancingLightItem.dancingLightSeconds%2 == 0) {
+            for (BallItems ballItem : GamePanel.ballItems) {
+                if (ballItem.value > 0) {
+                    g.setColor(new Color(0x0C4203));
+                    g.fillOval((int) ballItem.x, (int) ballItem.y, (int) ballSize, (int) ballSize);
+                }
             }
         }
+
     }
 
 

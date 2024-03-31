@@ -23,6 +23,7 @@ public class GamePanel extends JPanel implements Runnable {
     static SpeedItems speedItem;
     static PowerUpItem powerUpItem;
     static DizzinessItem dizzinessItem;
+    static DancingLightItem dancingLightItem;
     static int xFirstBrick;
     static int xSecondBrick;
     static int xBallItem;
@@ -34,6 +35,7 @@ public class GamePanel extends JPanel implements Runnable {
     static ArrayList<SpeedItems> speedItems = new ArrayList<>();
     static ArrayList<PowerUpItem> powerUpItems = new ArrayList<>();
     static ArrayList<DizzinessItem> dizzinessItems = new ArrayList<>();
+    static ArrayList<DancingLightItem> dancingLightItems = new ArrayList<>();
 
     static int gameRound = 1;
     static int number;
@@ -59,6 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
         newSpeedItems();
         newPowerUpItems();
         newDizzinessItems();
+        newDancingLightItems();
         mouseInputListener = new MouseInputListener();
         this.addMouseListener(new MouseInputListener());
         this.addMouseMotionListener(new MouseInputListener());
@@ -175,6 +178,18 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    public static void newDancingLightItems() {
+        if ((gameRound + number)%20 == 1) {
+            dancingLightItem = new DancingLightItem(xOtherItems * Brick.width, 85, gameRound);
+            dancingLightItem.value += number;
+            dancingLightItems.add(dancingLightItem);
+        }
+        else {
+            dancingLightItem = new DancingLightItem(xOtherItems * Brick.width, 85, 0);
+            dancingLightItems.add(dancingLightItem);
+        }
+    }
+
 
     public void run() {
 
@@ -209,6 +224,7 @@ public class GamePanel extends JPanel implements Runnable {
         speedItem.update();
         powerUpItem.update();
         dizzinessItem.update();
+        dancingLightItem.update();
 
     }
 
@@ -236,6 +252,7 @@ public class GamePanel extends JPanel implements Runnable {
         speedItem.draw(g, speedItem.x);
         powerUpItem.draw(g, powerUpItem.x);
         dizzinessItem.draw(g, dizzinessItem.x);
+        dancingLightItem.draw(g, dancingLightItem.x);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.black);
         g2d.fillRect(0, 80, 350, 5);

@@ -84,15 +84,24 @@ public class Ball {
     }
 
     public void draw(Graphics g, double x, double y, double ballSize) {
-        if (colorChosen) {
-            g.setColor(StartPagePanel.ballColor);
-            g.fillOval((int) x, (int) y, (int) ballSize, (int) ballSize);
-            for (Ball ball : GamePanel.balls) {
-                g.fillOval((int) ball.x, (int) ball.y, (int) ballSize, (int) ballSize);
+        if (DancingLightItem.dancingLightSeconds % 2 == 0) {
+            if (colorChosen) {
+                g.setColor(StartPagePanel.ballColor);
+                g.fillOval((int) x, (int) y, (int) ballSize, (int) ballSize);
+                for (Ball ball : GamePanel.balls) {
+                    g.fillOval((int) ball.x, (int) ball.y, (int) ballSize, (int) ballSize);
+                }
+            }
+            else {
+                g.setColor(new Color(0x0C4203));
+                g.fillOval((int) x, (int) y, (int) ballSize, (int) ballSize);
+                for (Ball ball : GamePanel.balls) {
+                    g.fillOval((int) ball.x, (int) ball.y, (int) ballSize, (int) ballSize);
+                }
             }
         }
         else {
-            g.setColor(new Color(0x0C4203));
+            g.setColor(new Color(0x9D15DC));
             g.fillOval((int) x, (int) y, (int) ballSize, (int) ballSize);
             for (Ball ball : GamePanel.balls) {
                 g.fillOval((int) ball.x, (int) ball.y, (int) ballSize, (int) ballSize);
@@ -120,6 +129,7 @@ public class Ball {
                 GamePanel.newSpeedItems();
                 GamePanel.newPowerUpItems();
                 GamePanel.newDizzinessItems();
+                GamePanel.newDancingLightItems();
                 ballInAir = false;
                 for (Brick brick : GamePanel.bricks) {
                     if (GamePanel.bricks.indexOf(brick) == 0 || GamePanel.bricks.indexOf(brick) == 1) {
@@ -133,6 +143,34 @@ public class Ball {
                         continue;
                     } else {
                         ballItem.y += Brick.height;
+                    }
+                }
+                for (SpeedItems speedItem : GamePanel.speedItems) {
+                    if (GamePanel.ballItems.indexOf(speedItem) == 0) {
+                        continue;
+                    } else {
+                        speedItem.y += Brick.height;
+                    }
+                }
+                for (PowerUpItem powerUpItem : GamePanel.powerUpItems) {
+                    if (GamePanel.ballItems.indexOf(powerUpItem) == 0) {
+                        continue;
+                    } else {
+                        powerUpItem.y += Brick.height;
+                    }
+                }
+                for (DizzinessItem dizzinessItem : GamePanel.dizzinessItems) {
+                    if (GamePanel.ballItems.indexOf(dizzinessItem) == 0) {
+                        continue;
+                    } else {
+                        dizzinessItem.y += Brick.height;
+                    }
+                }
+                for (DancingLightItem dancingLightItem : GamePanel.dancingLightItems) {
+                    if (GamePanel.ballItems.indexOf(dancingLightItem) == 0) {
+                        continue;
+                    } else {
+                        dancingLightItem.y += Brick.height;
                     }
                 }
                 GamePanel.newBall((int) GamePanel.ball.x, (int) GamePanel.ball.y);

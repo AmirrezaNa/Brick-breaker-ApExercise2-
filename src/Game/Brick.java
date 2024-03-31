@@ -61,19 +61,22 @@ public class Brick {
 
 
     public void draw(Graphics g, int y) {
-        for (Brick brick : GamePanel.bricks) {
-            if (brick.brickValue > 0) {
-                g.setColor(new Color(0x770404));
-                g.fillRect(brick.x, brick.y, width, height);
-                Graphics2D g2d = (Graphics2D) g;
-                g2d.setColor(new Color(0x0D283B));
-                g2d.setStroke(new BasicStroke(2));
-                g2d.drawRect(brick.x, brick.y, width, height);
-                g2d.setFont(new Font("Arial", Font.BOLD, 24));
-                g2d.drawString(String.valueOf(brick.brickValue), brick.x + 2*width/5, brick.y + 4*height/5);
-            }
+        if (DancingLightItem.dancingLightSeconds % 2 == 0) {
+            for (Brick brick : GamePanel.bricks) {
+                if (brick.brickValue > 0) {
+                    g.setColor(new Color(0x770404));
+                    g.fillRect(brick.x, brick.y, width, height);
+                    Graphics2D g2d = (Graphics2D) g;
+                    g2d.setColor(new Color(0x0D283B));
+                    g2d.setStroke(new BasicStroke(2));
+                    g2d.drawRect(brick.x, brick.y, width, height);
+                    g2d.setFont(new Font("Arial", Font.BOLD, 24));
+                    g2d.drawString(String.valueOf(brick.brickValue), brick.x + 2*width/5, brick.y + 4*height/5);
+                }
 
+            }
         }
+
 
     }
 

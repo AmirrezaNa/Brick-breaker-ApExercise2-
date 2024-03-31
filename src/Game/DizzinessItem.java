@@ -1,5 +1,7 @@
 package Game;
 
+import Start.StartPagePanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Timer;
@@ -24,7 +26,12 @@ public class DizzinessItem {
 
     public void update() {
         for (DizzinessItem dizzinessItem : GamePanel.dizzinessItems) {
-            dizzinessItem.y += 2 * dy;
+            if (StartPagePanel.gameLevel == 2) {
+                dizzinessItem.y += 4 * dy;
+            }
+            else {
+                dizzinessItem.y += 2 * dy;
+            }
             if (Ball.ballOnDownSide) {
                 dy = 0;
             }
