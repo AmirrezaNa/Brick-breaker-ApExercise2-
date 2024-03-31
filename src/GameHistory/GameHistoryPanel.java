@@ -11,7 +11,7 @@ public class GameHistoryPanel extends JPanel {
 
     GameHistoryPanel() {
         this.setBackground(new Color(0x0D283B));
-        this.setSize(StartPage.width, StartPage.height);
+        this.setSize(GameHistoryFrame.width, GameHistoryFrame.height);
         this.setLayout(null);
         this.setVisible(true);
     }

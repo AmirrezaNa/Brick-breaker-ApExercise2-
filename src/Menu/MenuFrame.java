@@ -2,7 +2,7 @@ package Menu;
 
 import GameHistory.GameHistoryFrame;
 import GameHistory.GameRecordsFrame;
-import Settings.Settings;
+import Settings.SettingsFrame;
 import Start.StartPage;
 
 import javax.swing.*;
@@ -123,7 +123,7 @@ public class MenuFrame extends JFrame implements ActionListener{
 
         } else if (e.getSource() == buttonSettings) {
             this.dispose();
-            Settings settings = new Settings();
+            SettingsFrame settings = new SettingsFrame();
         }
     }
 }

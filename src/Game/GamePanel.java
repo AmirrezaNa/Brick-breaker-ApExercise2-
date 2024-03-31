@@ -1,5 +1,7 @@
 package Game;
 
+import Settings.SettingsPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -230,7 +232,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void paint(Graphics g) {
         super.paint(g);
-        if (drawAimLine) {
+        if (drawAimLine && (SettingsPanel.aimNumber == 0)) {
             if (MouseInputListener.startPoint != null) {
 
                 Graphics2D g2d = (Graphics2D) g;

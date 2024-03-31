@@ -1,6 +1,7 @@
 package Game;
 
 import GameHistory.GameHistory;
+import Settings.SettingsPanel;
 import Start.StartPagePanel;
 import com.google.gson.Gson;
 
@@ -80,7 +81,9 @@ public class Brick {
                 Rectangle brickRect = new Rectangle(brick.x, brick.y, width, height);
                 Rectangle downSide = new Rectangle(0, 450, 350, 5);
                 if (brickRect.intersects(downSide)) {
-                    saveData();
+                    if (SettingsPanel.saveNumber == 0) {
+                        saveData();
+                    }
                     return true;
                 }
             }
@@ -93,15 +96,7 @@ public class Brick {
         Map<String, Integer> scores = new HashMap<>();
         scores.put(StartPagePanel.playerName, score);
 
-
         saveScores(scores);
-
-        // Read scores from file
-        Map<String, Integer> retrievedScores = readScores();
-        System.out.println("Retrieved scores:");
-        for (Map.Entry<String, Integer> entry : retrievedScores.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
     }
 
 
