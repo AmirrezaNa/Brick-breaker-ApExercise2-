@@ -16,6 +16,7 @@ public class StartPagePanel extends JPanel implements ActionListener {
     JButton color;
     public static Color ballColor;
     JTextField name;
+    public static String playerName;
     static int gameLevel;
     JButton buttonStart;
     JButton buttonBack;
@@ -116,6 +117,7 @@ public class StartPagePanel extends JPanel implements ActionListener {
             Ball.colorChosen = true;
         }
         if (e.getSource() == buttonStart) {
+            playerName = name.getText();
             GameFrame frame = new GameFrame();
         }
         if (e.getSource() == buttonBack) {

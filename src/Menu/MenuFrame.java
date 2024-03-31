@@ -1,6 +1,7 @@
 package Menu;
 
-import Game.GameFrame;
+import GameHistory.GameHistoryFrame;
+import GameHistory.GameRecordsFrame;
 import Settings.Settings;
 import Start.StartPage;
 
@@ -114,11 +115,11 @@ public class MenuFrame extends JFrame implements ActionListener{
 
         } else if (e.getSource() == buttonHistory) {
             this.dispose();
-            //GameHistory gameHistory = new GameHistory();
+            GameHistoryFrame gameHistoryFrame = new GameHistoryFrame();
 
         } else if (e.getSource() == buttonRecords) {
             this.dispose();
-            //GameRecords gameRecords = new GameRecords();
+            GameRecordsFrame gameRecords = new GameRecordsFrame();
 
         } else if (e.getSource() == buttonSettings) {
             this.dispose();

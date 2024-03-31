@@ -1,8 +1,20 @@
 package Game;
 
+import GameHistory.GameHistory;
+import Start.StartPagePanel;
+import com.google.gson.Gson;
+
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static Game.Ball.ballSize;
+import static GameHistory.GameHistory.readScores;
+import static GameHistory.GameHistory.saveScores;
 
 public class Brick {
 
@@ -11,7 +23,7 @@ public class Brick {
     int brickValue;
 
     int brickMainValue;
-    static int score = 0;
+    public static int score = 0;
 
 
     Brick(int x, int y, int brickValue) {
@@ -68,12 +80,28 @@ public class Brick {
                 Rectangle brickRect = new Rectangle(brick.x, brick.y, width, height);
                 Rectangle downSide = new Rectangle(0, 450, 350, 5);
                 if (brickRect.intersects(downSide)) {
+                    saveData();
                     return true;
                 }
             }
         }
         return false;
 
+    }
+
+    public static void saveData() {
+        Map<String, Integer> scores = new HashMap<>();
+        scores.put(StartPagePanel.playerName, score);
+
+
+        saveScores(scores);
+
+        // Read scores from file
+        Map<String, Integer> retrievedScores = readScores();
+        System.out.println("Retrieved scores:");
+        for (Map.Entry<String, Integer> entry : retrievedScores.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
     }
 
 

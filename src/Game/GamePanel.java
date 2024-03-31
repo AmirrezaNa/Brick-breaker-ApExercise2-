@@ -106,7 +106,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public static void newSpeedItems() {
-        if ((gameRound + number)%20 == 9) {
+        if ((gameRound + number)%20 == 15) {
             speedItem = new SpeedItems(xOtherItems * Brick.width, 85, 1);
             speedItems.add(speedItem);
         }
@@ -128,7 +128,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public static void newDizzinessItems() {
-        if ((gameRound + number)%20 == 15) {
+        if ((gameRound + number)%20 == 9) {
             dizzinessItem = new DizzinessItem(xOtherItems * Brick.width, 85, 1);
             dizzinessItems.add(dizzinessItem);
         }

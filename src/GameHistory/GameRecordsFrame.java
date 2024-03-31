@@ -1,26 +1,23 @@
-package Start;
+package GameHistory;
 
 import javax.swing.*;
-import java.awt.*;
 
-public class StartPage extends JFrame {
-
-
+public class GameRecordsFrame extends JFrame{
     public static final int width = 350;
     public static final int height = 550;
-    StartPagePanel panel;
 
-    public StartPage() {
+    GameRecordsPanel gameRecordsPanel;
+
+    public GameRecordsFrame() {
         this.setSize(width, height);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setTitle("Bricks Breaker");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        panel = new StartPagePanel();
-        this.add(panel);
+        gameRecordsPanel = new GameRecordsPanel();
+        this.add(gameRecordsPanel);
 
         this.setVisible(true);
     }
-
 }
