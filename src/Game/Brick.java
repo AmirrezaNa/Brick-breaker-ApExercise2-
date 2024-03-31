@@ -20,7 +20,7 @@ import static GameHistory.GameHistory.saveScores;
 public class Brick {
 
     int x, y , dy;
-    final static int width = 48, height = 25;
+    static int width = 48, height = 25;
     int brickValue;
 
     int brickMainValue;
@@ -51,7 +51,6 @@ public class Brick {
 
         }
 
-
         try {
             Thread.sleep(10);
         } catch (InterruptedException e) {
@@ -61,6 +60,7 @@ public class Brick {
 
 
     public void draw(Graphics g, int y) {
+
         if (DancingLightItem.dancingLightSeconds % 2 == 0) {
             for (Brick brick : GamePanel.bricks) {
                 if (brick.brickValue > 0) {

@@ -24,6 +24,7 @@ public class GamePanel extends JPanel implements Runnable {
     static PowerUpItem powerUpItem;
     static DizzinessItem dizzinessItem;
     static DancingLightItem dancingLightItem;
+    static EarthquakeItem earthquakeItem;
     static int xFirstBrick;
     static int xSecondBrick;
     static int xBallItem;
@@ -36,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
     static ArrayList<PowerUpItem> powerUpItems = new ArrayList<>();
     static ArrayList<DizzinessItem> dizzinessItems = new ArrayList<>();
     static ArrayList<DancingLightItem> dancingLightItems = new ArrayList<>();
+    static ArrayList<EarthquakeItem> earthquakeItems = new ArrayList<>();
 
     static int gameRound = 1;
     static int number;
@@ -62,6 +64,7 @@ public class GamePanel extends JPanel implements Runnable {
         newPowerUpItems();
         newDizzinessItems();
         newDancingLightItems();
+        newEarthquakeItems();
         mouseInputListener = new MouseInputListener();
         this.addMouseListener(new MouseInputListener());
         this.addMouseMotionListener(new MouseInputListener());
@@ -179,7 +182,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public static void newDancingLightItems() {
-        if ((gameRound + number)%20 == 1) {
+        if ((gameRound + number)%20 == 17) {
             dancingLightItem = new DancingLightItem(xOtherItems * Brick.width, 85, gameRound);
             dancingLightItem.value += number;
             dancingLightItems.add(dancingLightItem);
@@ -187,6 +190,18 @@ public class GamePanel extends JPanel implements Runnable {
         else {
             dancingLightItem = new DancingLightItem(xOtherItems * Brick.width, 85, 0);
             dancingLightItems.add(dancingLightItem);
+        }
+    }
+
+    public static void newEarthquakeItems() {
+        if ((gameRound + number)%20 == 19) {
+            earthquakeItem = new EarthquakeItem(xOtherItems * Brick.width, 85, gameRound);
+            earthquakeItem.value += number;
+            earthquakeItems.add(earthquakeItem);
+        }
+        else {
+            earthquakeItem = new EarthquakeItem(xOtherItems * Brick.width, 85, 0);
+            earthquakeItems.add(earthquakeItem);
         }
     }
 
@@ -225,6 +240,7 @@ public class GamePanel extends JPanel implements Runnable {
         powerUpItem.update();
         dizzinessItem.update();
         dancingLightItem.update();
+        earthquakeItem.update();
 
     }
 
@@ -253,6 +269,7 @@ public class GamePanel extends JPanel implements Runnable {
         powerUpItem.draw(g, powerUpItem.x);
         dizzinessItem.draw(g, dizzinessItem.x);
         dancingLightItem.draw(g, dancingLightItem.x);
+        earthquakeItem.draw(g, earthquakeItem.x);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.black);
         g2d.fillRect(0, 80, 350, 5);

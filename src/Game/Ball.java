@@ -130,6 +130,7 @@ public class Ball {
                 GamePanel.newPowerUpItems();
                 GamePanel.newDizzinessItems();
                 GamePanel.newDancingLightItems();
+                GamePanel.newEarthquakeItems();
                 ballInAir = false;
                 for (Brick brick : GamePanel.bricks) {
                     if (GamePanel.bricks.indexOf(brick) == 0 || GamePanel.bricks.indexOf(brick) == 1) {
@@ -171,6 +172,13 @@ public class Ball {
                         continue;
                     } else {
                         dancingLightItem.y += Brick.height;
+                    }
+                }
+                for (EarthquakeItem earthquakeItem : GamePanel.earthquakeItems) {
+                    if (GamePanel.ballItems.indexOf(earthquakeItem) == 0) {
+                        continue;
+                    } else {
+                        earthquakeItem.y += Brick.height;
                     }
                 }
                 GamePanel.newBall((int) GamePanel.ball.x, (int) GamePanel.ball.y);
