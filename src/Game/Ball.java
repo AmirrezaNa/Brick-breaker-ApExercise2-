@@ -131,6 +131,9 @@ public class Ball {
                 GamePanel.newDizzinessItems();
                 GamePanel.newDancingLightItems();
                 GamePanel.newEarthquakeItems();
+                GamePanel.newBombItems();
+                GamePanel.newReverseItems();
+                GamePanel.newChanceItems();
                 ballInAir = false;
                 for (Brick brick : GamePanel.bricks) {
                     if (GamePanel.bricks.indexOf(brick) == 0 || GamePanel.bricks.indexOf(brick) == 1) {
@@ -147,38 +150,59 @@ public class Ball {
                     }
                 }
                 for (SpeedItems speedItem : GamePanel.speedItems) {
-                    if (GamePanel.ballItems.indexOf(speedItem) == 0) {
+                    if (GamePanel.speedItems.indexOf(speedItem) == 0) {
                         continue;
                     } else {
                         speedItem.y += Brick.height;
                     }
                 }
                 for (PowerUpItem powerUpItem : GamePanel.powerUpItems) {
-                    if (GamePanel.ballItems.indexOf(powerUpItem) == 0) {
+                    if (GamePanel.powerUpItems.indexOf(powerUpItem) == 0) {
                         continue;
                     } else {
                         powerUpItem.y += Brick.height;
                     }
                 }
                 for (DizzinessItem dizzinessItem : GamePanel.dizzinessItems) {
-                    if (GamePanel.ballItems.indexOf(dizzinessItem) == 0) {
+                    if (GamePanel.dizzinessItems.indexOf(dizzinessItem) == 0) {
                         continue;
                     } else {
                         dizzinessItem.y += Brick.height;
                     }
                 }
                 for (DancingLightItem dancingLightItem : GamePanel.dancingLightItems) {
-                    if (GamePanel.ballItems.indexOf(dancingLightItem) == 0) {
+                    if (GamePanel.dancingLightItems.indexOf(dancingLightItem) == 0) {
                         continue;
                     } else {
                         dancingLightItem.y += Brick.height;
                     }
                 }
                 for (EarthquakeItem earthquakeItem : GamePanel.earthquakeItems) {
-                    if (GamePanel.ballItems.indexOf(earthquakeItem) == 0) {
+                    if (GamePanel.earthquakeItems.indexOf(earthquakeItem) == 0) {
                         continue;
                     } else {
                         earthquakeItem.y += Brick.height;
+                    }
+                }
+                for (BombItem bombItem : GamePanel.bombItems) {
+                    if (GamePanel.bombItems.indexOf(bombItem) == 0) {
+                        continue;
+                    } else {
+                        bombItem.y += Brick.height;
+                    }
+                }
+                for (ReverseItem reverseItem : GamePanel.reverseItems) {
+                    if (GamePanel.reverseItems.indexOf(reverseItem) == 0) {
+                        continue;
+                    } else {
+                        reverseItem.y += Brick.height;
+                    }
+                }
+                for (ChanceItem chanceItem : GamePanel.chanceItems) {
+                    if (GamePanel.chanceItems.indexOf(chanceItem) == 0) {
+                        continue;
+                    } else {
+                        chanceItem.y += Brick.height;
                     }
                 }
                 GamePanel.newBall((int) GamePanel.ball.x, (int) GamePanel.ball.y);

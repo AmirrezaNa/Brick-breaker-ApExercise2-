@@ -88,10 +88,18 @@ public class Brick {
                 Rectangle brickRect = new Rectangle(brick.x, brick.y, width, height);
                 Rectangle downSide = new Rectangle(0, 450, 350, 5);
                 if (brickRect.intersects(downSide)) {
-                    if (SettingsPanel.saveNumber == 0) {
-                        saveData();
+                    if (ChanceItem.anotherChance == 1) {
+                        brick.brickValue = 0;
+                        ChanceItem.anotherChance = 0;
+                        return false;
                     }
-                    return true;
+                    else {
+                        if (SettingsPanel.saveNumber == 0) {
+                            saveData();
+                        }
+                        return true;
+                    }
+
                 }
             }
         }
