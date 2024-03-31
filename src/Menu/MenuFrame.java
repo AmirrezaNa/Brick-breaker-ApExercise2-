@@ -98,7 +98,10 @@ public class MenuFrame extends JFrame implements ActionListener{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBounds(250, 165, 800, 400);
         this.setVisible(true);
-        
+
+        ImageIcon imageIcon = new ImageIcon("image.png");
+        this.setIconImage(imageIcon.getImage());
+
 
     }
 

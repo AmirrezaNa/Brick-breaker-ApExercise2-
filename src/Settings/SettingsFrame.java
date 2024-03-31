@@ -22,5 +22,7 @@ public class SettingsFrame extends JFrame {
         this.add(settingsPanel);
 
         this.setVisible(true);
+        ImageIcon imageIcon = new ImageIcon("image.png");
+        this.setIconImage(imageIcon.getImage());
     }
 }

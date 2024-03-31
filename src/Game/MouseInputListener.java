@@ -22,7 +22,9 @@ public class MouseInputListener implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        Point point = e.getPoint();
+        if (point.x > 250 && point.x < 325 && point.y > 35 && point.y < 70) GamePanel.pauseGame = true;
+        if (point.x > 170 && point.x < 245 && point.y > 35 && point.y < 70) GamePanel.pauseGame = false;
     }
 
     @Override

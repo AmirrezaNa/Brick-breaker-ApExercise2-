@@ -50,6 +50,8 @@ public class GamePanel extends JPanel implements Runnable {
     int seconds;
     static int minutes;
     Timer timer;
+    static boolean pauseGame = false;
+
 
 
 
@@ -74,13 +76,16 @@ public class GamePanel extends JPanel implements Runnable {
         newBombItems();
         newReverseItems();
         newChanceItems();
+        //addButton();
         mouseInputListener = new MouseInputListener();
         this.addMouseListener(new MouseInputListener());
         this.addMouseMotionListener(new MouseInputListener());
         seconds = 0;
         minutes = 0;
-    }
 
+
+
+    }
 
     public static void newBall(int x, int y) {
         ball = new Ball(x, y);
@@ -249,6 +254,13 @@ public class GamePanel extends JPanel implements Runnable {
     public void run() {
 
         while (GameFrame.gameIsRunning) {
+            while (pauseGame) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
 
             //update
             update();
@@ -304,6 +316,7 @@ public class GamePanel extends JPanel implements Runnable {
         drawScore(g);
         drawTimer(g);
         drawBallNumber(g);
+        drawPauseResume(g);
         ball.draw(g, ball.x, ball.y, ball.ballSize);
         newBrick1.draw(g, newBrick1.x);
         newBrick2.draw(g, newBrick2.x);
@@ -323,6 +336,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (Brick.checkForEndGame()) {
             drawYouLost(g);
             GameFrame.gameIsRunning = false;
+
         }
         g.dispose();
     }
@@ -343,6 +357,19 @@ public class GamePanel extends JPanel implements Runnable {
         g.setColor(new Color(0x1C8F09));
         g.setFont(new Font("Arial", Font.PLAIN  , 18));
         g.drawString("Balls : " + balls.size(), 10, 40);
+    }
+
+    public void drawPauseResume(Graphics g) {
+        g.setColor(new Color(0x770404));
+        g.fillRect(250, 35, 75, 35);
+        g.setColor(new Color(0x1C8F09));
+        g.drawString("Pause", 260, 57);
+
+        g.setColor(new Color(0x770404));
+        g.fillRect(170, 35, 75, 35);
+        g.setColor(new Color(0x1C8F09));
+        g.drawString("Resume", 175, 57);
+
     }
 
     public void paint(Graphics g) {
@@ -403,13 +430,28 @@ public class GamePanel extends JPanel implements Runnable {
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                seconds++;
-                if (seconds == 60) {
-                    minutes++;
-                    seconds = 0;
+                if (GameFrame.gameIsRunning) {
+                    seconds++;
+                    if (seconds == 60) {
+                        minutes++;
+                        seconds = 0;
+                    }
                 }
+
             }
         });
+    }
+
+    public static void pause() {
+        if (GameFrame.gameIsRunning) {
+            GameFrame.gameIsRunning = false;
+        }
+    }
+
+    public static void resume() {
+        if (!GameFrame.gameIsRunning) {
+            GameFrame.gameIsRunning = true;
+        }
     }
 
 }

@@ -32,6 +32,8 @@ public class GameFrame extends JFrame{
         Thread thread = new Thread(gamePanel);
         thread.start();
         this.setVisible(true);
+        ImageIcon imageIcon = new ImageIcon("image.png");
+        this.setIconImage(imageIcon.getImage());
 
 
     }
