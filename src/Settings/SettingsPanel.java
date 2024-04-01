@@ -22,7 +22,6 @@ public class SettingsPanel extends JPanel implements ActionListener {
     static int themeNumber;
     public static int saveNumber;
 
-    JButton buttonBack;
 
     SettingsPanel() {
         this.setBackground(new Color(0x0D283B));
@@ -70,20 +69,11 @@ public class SettingsPanel extends JPanel implements ActionListener {
 
 
 
-        buttonBack = new JButton();
-        buttonBack.setFocusable(false);
-        buttonBack.setBackground(new Color(0x770404));
-        buttonBack.setText("Back");
-        buttonBack.setForeground(new Color(0x1C8F09));
-        buttonBack.setBounds(50, 350, 100, 50);
-        buttonBack.addActionListener(this);
-        buttonBack.setBorder(BorderFactory.createEtchedBorder());
 
 
         this.add(aimBox);
         this.add(themeBox);
         this.add(saveBox);
-        this.add(buttonBack);
         this.setSize(SettingsFrame.width, SettingsFrame.height);
         this.setLayout(null);
         this.setVisible(true);
@@ -103,9 +93,6 @@ public class SettingsPanel extends JPanel implements ActionListener {
         }
         if (e.getSource() == saveBox) {
             saveNumber = saveBox.getSelectedIndex();
-        }
-        if (e.getSource() == buttonBack) {
-            MenuFrame frame = new MenuFrame();
         }
     }
 

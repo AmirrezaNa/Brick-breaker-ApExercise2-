@@ -1,5 +1,6 @@
 package Game;
 
+import AfterGame.AfterGameFrame;
 import Settings.SettingsPanel;
 import Start.StartPagePanel;
 
@@ -33,24 +34,24 @@ public class GamePanel extends JPanel implements Runnable {
     static int xBallItem;
     static int xOtherItems;
 
-    static ArrayList<Brick> bricks = new ArrayList<>();
-    static ArrayList<Ball> balls = new ArrayList<>();
-    static ArrayList<BallItems> ballItems = new ArrayList<>();
-    static ArrayList<SpeedItems> speedItems = new ArrayList<>();
-    static ArrayList<PowerUpItem> powerUpItems = new ArrayList<>();
-    static ArrayList<DizzinessItem> dizzinessItems = new ArrayList<>();
-    static ArrayList<DancingLightItem> dancingLightItems = new ArrayList<>();
-    static ArrayList<EarthquakeItem> earthquakeItems = new ArrayList<>();
-    static ArrayList<BombItem> bombItems = new ArrayList<>();
-    static ArrayList<ReverseItem> reverseItems = new ArrayList<>();
-    static ArrayList<ChanceItem> chanceItems = new ArrayList<>();
+    public static ArrayList<Brick> bricks = new ArrayList<>();
+    public static ArrayList<Ball> balls = new ArrayList<>();
+    public static ArrayList<BallItems> ballItems = new ArrayList<>();
+    public static ArrayList<SpeedItems> speedItems = new ArrayList<>();
+    public static ArrayList<PowerUpItem> powerUpItems = new ArrayList<>();
+    public static ArrayList<DizzinessItem> dizzinessItems = new ArrayList<>();
+    public static ArrayList<DancingLightItem> dancingLightItems = new ArrayList<>();
+    public static ArrayList<EarthquakeItem> earthquakeItems = new ArrayList<>();
+    public static ArrayList<BombItem> bombItems = new ArrayList<>();
+    public static ArrayList<ReverseItem> reverseItems = new ArrayList<>();
+    public static ArrayList<ChanceItem> chanceItems = new ArrayList<>();
 
     static int gameRound = 1;
-    static int number;
-    int seconds;
-    static int minutes;
+    public static int number;
+    public static int seconds;
+    public static int minutes;
     Timer timer;
-    static boolean pauseGame = false;
+    public static boolean pauseGame = false;
 
 
 
@@ -296,6 +297,7 @@ public class GamePanel extends JPanel implements Runnable {
         bombItem.update();
         reverseItem.update();
         chanceItem.update();
+        restartingGame();
 
     }
 
@@ -335,8 +337,6 @@ public class GamePanel extends JPanel implements Runnable {
         g2d.fillRect(0, 450, 350, 5);
         if (Brick.checkForEndGame()) {
             drawYouLost(g);
-            GameFrame.gameIsRunning = false;
-
         }
         g.dispose();
     }
@@ -442,16 +442,24 @@ public class GamePanel extends JPanel implements Runnable {
         });
     }
 
-    public static void pause() {
-        if (GameFrame.gameIsRunning) {
-            GameFrame.gameIsRunning = false;
+    public void restartingGame() {
+        if (Brick.checkForEndGame()) {
+            number = 0;
+            seconds = 0;
+            minutes = 0;
+            bricks.clear();
+            balls.clear();
+            ballItems.clear();
+            speedItems.clear();
+            powerUpItems.clear();
+            dizzinessItems.clear();
+            dancingLightItems.clear();
+            earthquakeItems.clear();
+            bombItems.clear();
+            reverseItems.clear();
+            chanceItems.clear();
+            Brick.score = 0;
+            repaint();
         }
     }
-
-    public static void resume() {
-        if (!GameFrame.gameIsRunning) {
-            GameFrame.gameIsRunning = true;
-        }
-    }
-
 }

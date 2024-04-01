@@ -1,5 +1,6 @@
 package Game;
 
+import AfterGame.AfterGameFrame;
 import GameHistory.GameHistory;
 import Settings.SettingsPanel;
 import Start.StartPagePanel;
@@ -87,7 +88,7 @@ public class Brick {
             if (brick.brickValue > 0) {
                 Rectangle brickRect = new Rectangle(brick.x, brick.y, width, height);
                 Rectangle downSide = new Rectangle(0, 450, 350, 5);
-                if (brickRect.intersects(downSide)) {
+                if (brickRect.y + brickRect.height >= 450) {
                     if (ChanceItem.anotherChance == 1) {
                         brick.brickValue = 0;
                         ChanceItem.anotherChance = 0;
@@ -95,6 +96,8 @@ public class Brick {
                     }
                     else {
                         if (SettingsPanel.saveNumber == 0) {
+                            GamePanel.pauseGame = true;
+                            AfterGameFrame afterGameFrame = new AfterGameFrame();
                             saveData();
                         }
                         return true;
